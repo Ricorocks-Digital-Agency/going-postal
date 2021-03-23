@@ -10,13 +10,15 @@ use RicorocksDigitalAgency\GoingPostal\Facades;
 class GoingPostal extends Component
 {
     public $postcode = '';
+    public $inputId;
     public $className;
     public $inputClass;
     public $buttonClass;
     public $buttonText;
 
-    public function mount($class = '', $inputClass = '', $buttonClass = '', $buttonText = 'Search')
+    public function mount($inputId = '', $class = '', $inputClass = '', $buttonClass = '', $buttonText = 'Search')
     {
+        $this->inputId = $inputId;
         $this->className = $class;
         $this->inputClass = $inputClass;
         $this->buttonClass = $buttonClass;
@@ -34,7 +36,7 @@ class GoingPostal extends Component
     {
         return <<<'blade'
             <div class="{{ $this->className }}">
-                <input wire:model.defer="postcode" class="{{ $this->inputClass }}" type="text"/>
+                <input wire:model.defer="postcode" id="{{ $this->inputId }}" class="{{ $this->inputClass }}" type="text"/>
                 <button wire:click="search" wire:loading.attr="disabled" wire:target="search" type="button" class="{{ $this->buttonClass }}">{{ $this->buttonText }}</button>
             </div>
         blade;
