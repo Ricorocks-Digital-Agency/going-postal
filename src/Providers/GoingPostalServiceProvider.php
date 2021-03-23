@@ -35,10 +35,6 @@ class GoingPostalServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->console();
         }
-
-        if (class_exists(Livewire::class)) {
-            Livewire::component('going-postal', Http\Livewire\GoingPostal::class);
-        }
     }
 
     protected function console()

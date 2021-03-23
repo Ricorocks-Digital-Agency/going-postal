@@ -14,7 +14,7 @@ trait SearchesPostcodes
     {
         $this->validate(['postcode' => 'required|max:10|min:4']);
         $results = GoingPostal::lookup($this->postcode);
-        $this->emitSelf('going-postal.addresses-received', $results->toArray());
+        $this->emit('going-postal.addresses-received', $results->toArray());
     }
 
 }
