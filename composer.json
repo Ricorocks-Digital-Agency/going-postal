@@ -27,5 +27,15 @@
             "name": "luke",
             "email": "lukeraymonddowning@gmail.com"
         }
-    ]
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RicorocksDigitalAgency\\GoingPostal\\Providers\\GoingPostalServiceProvider"
+            ],
+            "aliases": {
+                "GoingPostal": "RicorocksDigitalAgency\\GoingPostal\\Facades\\GoingPostal"
+            }
+        }
+    }
 }
