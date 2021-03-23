@@ -35,9 +35,9 @@ class GoingPostal extends Component
     public function render()
     {
         return <<<'blade'
-            <div class="{{ $this->className }}">
-                <input wire:model.defer="postcode" id="{{ $this->inputId }}" class="{{ $this->inputClass }}" type="text"/>
-                <button wire:click="search" wire:loading.attr="disabled" wire:target="search" type="button" class="{{ $this->buttonClass }}">{{ $this->buttonText }}</button>
+            <div x-data="{}" class="{{ $this->className }}">
+                <input @keydown.enter.stop="$refs.button.click()" wire:model.defer="postcode" id="{{ $this->inputId }}" class="{{ $this->inputClass }}" type="text"/>
+                <button x-ref="button" wire:click="search" wire:loading.attr="disabled" wire:target="search" type="button" class="{{ $this->buttonClass }}">{{ $this->buttonText }}</button>
             </div>
         blade;
     }
