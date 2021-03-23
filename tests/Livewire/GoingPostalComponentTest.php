@@ -5,9 +5,11 @@ namespace RicorocksDigitalAgency\GoingPostal\Tests\Livewire;
 
 
 use Illuminate\Support\Collection;
+use Livewire\Component;
 use Livewire\Livewire;
 use RicorocksDigitalAgency\GoingPostal\Address;
 use RicorocksDigitalAgency\GoingPostal\Facades\GoingPostal;
+use RicorocksDigitalAgency\GoingPostal\Http\Livewire\Traits\SearchesPostcodes;
 use RicorocksDigitalAgency\GoingPostal\Tests\TestCase;
 
 class GoingPostalComponentTest extends TestCase
@@ -21,12 +23,12 @@ class GoingPostalComponentTest extends TestCase
             ->with('foobar')
             ->andReturn(collect());
 
-        static::livewire()->set('postcode', 'foobar')->call('search');
+        static::livewire()->set('postcode', 'foobar')->call('searchPostcode');
     }
 
     protected static function livewire()
     {
-        return Livewire::test(\RicorocksDigitalAgency\GoingPostal\Http\Livewire\GoingPostal::class);
+        return Livewire::test(TestComponent::class);
     }
 
     /** @test */
@@ -34,16 +36,16 @@ class GoingPostalComponentTest extends TestCase
     {
         static::livewire()
             ->set('postcode', '')
-            ->call('search')
+            ->call('searchPostcode')
             ->assertHasErrors('postcode')
             ->set('postcode', 'S35')
-            ->call('search')
+            ->call('searchPostcode')
             ->assertHasErrors('postcode')
             ->set('postcode', 'S359adadwadwda')
-            ->call('search')
+            ->call('searchPostcode')
             ->assertHasErrors('postcode')
             ->set('postcode', 'T35 T1NG')
-            ->call('search')
+            ->call('searchPostcode')
             ->assertHasNoErrors();
     }
 
@@ -58,8 +60,21 @@ class GoingPostalComponentTest extends TestCase
 
         static::livewire()
             ->set('postcode', 'Foobar')
-            ->call('search')
+            ->call('searchPostcode')
             ->assertEmitted('going-postal.addresses-received', $payload);
     }
 
+}
+
+class TestComponent extends Component {
+
+    use SearchesPostcodes;
+
+    public function render()
+    {
+        return <<<'blade'
+            <div></div>
+        blade;
+
+    }
 }
