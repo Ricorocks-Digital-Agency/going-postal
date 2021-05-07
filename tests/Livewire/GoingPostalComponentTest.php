@@ -4,17 +4,16 @@
 namespace RicorocksDigitalAgency\GoingPostal\Tests\Livewire;
 
 
-use Illuminate\Support\Collection;
-use Livewire\Component;
 use Livewire\Livewire;
+use Livewire\Component;
+use Illuminate\Support\Collection;
 use RicorocksDigitalAgency\GoingPostal\Address;
+use RicorocksDigitalAgency\GoingPostal\Tests\TestCase;
 use RicorocksDigitalAgency\GoingPostal\Facades\GoingPostal;
 use RicorocksDigitalAgency\GoingPostal\Http\Livewire\Traits\SearchesPostcodes;
-use RicorocksDigitalAgency\GoingPostal\Tests\TestCase;
 
 class GoingPostalComponentTest extends TestCase
 {
-
     /** @test */
     public function it_calls_on_the_service_with_the_given_postcode()
     {
@@ -104,7 +103,6 @@ class GoingPostalComponentTest extends TestCase
     {
         return Livewire::test(TestComponent::class);
     }
-
 }
 
 class TestComponent extends Component {

@@ -3,15 +3,14 @@
 
 namespace RicorocksDigitalAgency\GoingPostal\Contracts;
 
-
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
-use RicorocksDigitalAgency\GoingPostal\Address;
 
 interface LookupService
 {
 
     public function lookup($postcode): Collection;
 
-    public function addressFor($identifier): Address;
+    public function addressFor($identifier): Arrayable;
 
 }
