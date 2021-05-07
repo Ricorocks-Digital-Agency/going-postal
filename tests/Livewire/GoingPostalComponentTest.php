@@ -26,11 +26,6 @@ class GoingPostalComponentTest extends TestCase
         static::livewire()->set('postcode', 'foobar')->call('searchPostcode');
     }
 
-    protected static function livewire()
-    {
-        return Livewire::test(TestComponent::class);
-    }
-
     /** @test */
     public function the_postcode_must_be_valid()
     {
@@ -62,6 +57,52 @@ class GoingPostalComponentTest extends TestCase
             ->set('postcode', 'Foobar')
             ->call('searchPostcode')
             ->assertEmitted('going-postal.addresses-received', $payload);
+    }
+
+    /** @test */
+    public function it_calls_on_the_service_to_retrieve_an_address_from_the_given_identifier()
+    {
+        GoingPostal::shouldReceive('addressFor')
+            ->once()
+            ->with('123456')
+            ->andReturn(Address::make());
+
+        static::livewire()->set('addressIdentifier', '123456')->call('retrieveAddress');
+    }
+
+    /** @test */
+    public function the_address_identifier_must_not_be_null()
+    {
+        static::livewire()
+            ->set('addressIdentifier', null)
+            ->call('retrieveAddress')
+            ->assertHasErrors('addressIdentifier')
+            ->set('addressIdentifier', '123456')
+            ->call('retrieveAddress')
+            ->assertHasNoErrors('addressIdentifier');
+    }
+
+    /** @test */
+    public function it_emits_an_event_with_the_returned_address_when_retrieving_an_address()
+    {
+        $address = Address::make()
+                    ->line1('Foo')
+                    ->line2('Bar')
+                    ->city('Baz')
+                    ->county('Blah')
+                    ->postcode('Foobar');
+
+        GoingPostal::shouldReceive('addressFor')->andReturn($address);
+
+        static::livewire()
+            ->set('addressIdentifier', '1234')
+            ->call('retrieveAddress')
+            ->assertEmitted('going-postal.address-received', $address->toArray());
+    }
+
+    protected static function livewire()
+    {
+        return Livewire::test(TestComponent::class);
     }
 
 }
