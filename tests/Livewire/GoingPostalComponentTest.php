@@ -17,7 +17,7 @@ class GoingPostalComponentTest extends TestCase
     /** @test */
     public function it_calls_on_the_service_with_the_given_postcode()
     {
-        GoingPostal::shouldReceive('lookup')
+        GoingPostal::shouldReceive('addressesIn')
             ->once()
             ->with('foobar')
             ->andReturn(collect());
@@ -50,7 +50,7 @@ class GoingPostalComponentTest extends TestCase
             Address::make()->line1('Foo')->line2('Bar')->city('Baz')->county('Blah')->postcode('Foobar')->toArray(),
         ];
 
-        GoingPostal::shouldReceive('lookup')->andReturn(Collection::wrap($payload));
+        GoingPostal::shouldReceive('addressesIn')->andReturn(Collection::wrap($payload));
 
         static::livewire()
             ->set('postcode', 'Foobar')

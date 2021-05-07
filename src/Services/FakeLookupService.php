@@ -21,7 +21,7 @@ class FakeLookupService implements LookupService
         $this->numberOfAddresses = $numberOfAddresses;
     }
 
-    public function lookup($postcode): Collection
+    public function addressesIn($postcode): Collection
     {
         return Collection::times($this->numberOfAddresses, function() use ($postcode) {
             return Address::make()

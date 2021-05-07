@@ -12,9 +12,9 @@ class GoingPostal
     {
     }
 
-    public function lookup($postcode)
+    public function addressesIn($postcode)
     {
-        return $this->lookupService->lookup($postcode);
+        return $this->lookupService->addressesIn($postcode);
     }
 
     public function addressFor($identifier)

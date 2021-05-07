@@ -12,7 +12,7 @@ use RicorocksDigitalAgency\GoingPostal\Address;
  * Class GoingPostal
  * @package RicorocksDigitalAgency\GoingPostal\Facades
  *
- * @method static Collection lookup($postcode) Return addresses for the given postcode
+ * @method static Collection addressesIn($postcode) Return addresses for the given postcode
  * @method static Address addressFor($identifier) Retrieve a single address from an identifier
  */
 class GoingPostal extends Facade
