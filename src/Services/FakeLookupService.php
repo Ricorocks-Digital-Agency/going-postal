@@ -21,7 +21,7 @@ class FakeLookupService implements LookupService
         $this->numberOfAddresses = $numberOfAddresses;
     }
 
-    public function lookup($postcode): Collection
+    public function addressesIn($postcode): Collection
     {
         return Collection::times($this->numberOfAddresses, function() use ($postcode) {
             return Address::make()
@@ -32,5 +32,16 @@ class FakeLookupService implements LookupService
                 ->country("United Kingdom")
                 ->postcode($postcode);
         });
+    }
+
+    public function addressFor($identifier): Address
+    {
+        return Address::make()
+            ->line1($this->faker->streetAddress)
+            ->line2($this->faker->streetName)
+            ->city($this->faker->city)
+            ->county($this->faker->state)
+            ->country("United Kingdom")
+            ->postcode($this->faker->postcode);
     }
 }

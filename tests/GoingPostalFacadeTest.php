@@ -15,10 +15,18 @@ class GoingPostalFacadeTest extends TestCase
     /** @test */
     public function it_can_lookup_a_given_postcode()
     {
-        $results = GoingPostal::lookup($this->faker->postcode);
+        $results = GoingPostal::addressesIn($this->faker->postcode);
 
         expect($results)->toHaveCount(5);
         $results->each(fn($result) => expect($result)->toBeInstanceOf(Address::class));
+    }
+
+    /** @test */
+    public function it_can_retrieve_an_address_from_an_identifier()
+    {
+        $address = GoingPostal::addressFor($this->faker->uuid);
+
+        expect($address)->toBeInstanceOf(Address::class);
     }
 
 }
