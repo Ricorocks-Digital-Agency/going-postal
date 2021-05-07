@@ -5,11 +5,9 @@ namespace RicorocksDigitalAgency\GoingPostal\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
-use RicorocksDigitalAgency\GoingPostal\Contracts\LookupService;
 use RicorocksDigitalAgency\GoingPostal\GoingPostal;
+use RicorocksDigitalAgency\GoingPostal\Contracts\LookupService;
 use RicorocksDigitalAgency\GoingPostal\Services\FakeLookupService;
-use \RicorocksDigitalAgency\GoingPostal\Http;
 
 class GoingPostalServiceProvider extends ServiceProvider
 {

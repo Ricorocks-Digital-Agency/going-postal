@@ -17,4 +17,9 @@ class GoingPostal
         return $this->lookupService->lookup($postcode);
     }
 
+    public function addressFor($identifier)
+    {
+        return $this->lookupService->addressFor($identifier);
+    }
+
 }

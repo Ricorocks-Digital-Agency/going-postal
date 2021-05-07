@@ -21,4 +21,12 @@ class GoingPostalFacadeTest extends TestCase
         $results->each(fn($result) => expect($result)->toBeInstanceOf(Address::class));
     }
 
+    /** @test */
+    public function it_can_retrieve_an_address_from_an_identifier()
+    {
+        $address = GoingPostal::addressFor($this->faker->uuid);
+
+        expect($address)->toBeInstanceOf(Address::class);
+    }
+
 }

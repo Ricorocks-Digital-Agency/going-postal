@@ -33,4 +33,15 @@ class FakeLookupService implements LookupService
                 ->postcode($postcode);
         });
     }
+
+    public function addressFor($identifier): Address
+    {
+        return Address::make()
+            ->line1($this->faker->streetAddress)
+            ->line2($this->faker->streetName)
+            ->city($this->faker->city)
+            ->county($this->faker->state)
+            ->country("United Kingdom")
+            ->postcode($this->faker->postcode);
+    }
 }
