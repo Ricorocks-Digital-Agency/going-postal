@@ -3,10 +3,11 @@
     "description": "A Laravel package that provides a driver based postal code lookup integration.",
     "type": "library",
     "require": {
-        "illuminate/support": "^9.0|^10.0"
+        "php": "^8.2",
+        "illuminate/support": "^10.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0|^8.0",
+        "orchestra/testbench": "^8.0",
         "livewire/livewire": "^2.4",
         "pestphp/pest-plugin-expectations": "^1.0",
         "spatie/laravel-ray": "^1.17"
